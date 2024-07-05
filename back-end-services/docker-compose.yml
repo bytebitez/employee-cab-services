@@ -12,6 +12,8 @@ services:
       - DATABASE_URL=postgresql://postgres:admin@db:5432/test
       - SECRET_KEY=my_secret_key
       - JWT_SECRET_KEY=abcdefgh1234567890
+    depends_on:
+      - db
 
   user-management-service:
     build:
@@ -24,6 +26,8 @@ services:
       - DATABASE_URL=postgresql://postgres:admin@db:5432/test
       - SECRET_KEY=my_secret_key
       - JWT_SECRET_KEY=abcdefgh1234567890
+    depends_on:
+      - db
       
   driver-availability-service:
     build:
@@ -36,6 +40,8 @@ services:
       - DATABASE_URL=postgresql://postgres:admin@db:5432/test
       - SECRET_KEY=my_secret_key
       - JWT_SECRET_KEY=abcdefgh1234567890
+    depends_on:
+      - db
 
   route-management-service:
     build:
@@ -48,9 +54,25 @@ services:
       - DATABASE_URL=postgresql://postgres:admin@db:5432/test
       - SECRET_KEY=my_secret_key
       - JWT_SECRET_KEY=abcdefgh1234567890
+    depends_on:
+      - db
 
-      
-  # other services
+  admin_management_service:
+    build: ./admin_management_service
+    ports:
+      - "5001:5000"
+    environment:
+      - SECRET_KEY=my_secret_key
+      - DATABASE_URL=postgresql://postgres:admin@db:5432/test
+      - JWT_SECRET_KEY=abcdefgh1234567890
+      - MAIL_SERVER=smtp.gmail.com
+      - MAIL_PORT=587
+      - MAIL_USERNAME=raju0518@gmail.com
+      - MAIL_PASSWORD=ramaraju0518
+      - MAIL_USE_TLS=True
+      - MAIL_USE_SSL=False
+    depends_on:
+      - db
 
   db:
     image: postgres:13
