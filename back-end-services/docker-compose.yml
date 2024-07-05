@@ -73,6 +73,21 @@ services:
       - MAIL_USE_SSL=False
     depends_on:
       - db
+  
+  celery_worker:
+    build: ./cron_jobs_service
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DATABASE_URL=postgresql://postgres:admin@db:5432/test
+    depends_on:
+      - redis
+      - db
+
+  redis:
+    image: redis:6.0
+    ports:
+      - "6379:6379"
 
   db:
     image: postgres:13
