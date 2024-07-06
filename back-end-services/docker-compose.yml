@@ -3,7 +3,7 @@ version: '3.8'
 services:
   booking-service:
     build:
-      context: ./booking_service
+      context: ./booking-service
     ports:
       - "5001:5000"
     environment:
@@ -17,9 +17,9 @@ services:
 
   user-management-service:
     build:
-      context: ./user_management_service
+      context: ./user-management-service
     ports:
-      - "5000:5000"
+      - "5002:5000"
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
@@ -33,7 +33,7 @@ services:
     build:
       context: ./driver_availability_service
     ports:
-      - "5002:5000"
+      - "5003:5000"
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
@@ -47,7 +47,7 @@ services:
     build:
       context: ./route_management_service
     ports:
-      - "5003:5000"
+      - "5004:5000"
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
@@ -60,7 +60,7 @@ services:
   admin_management_service:
     build: ./admin_management_service
     ports:
-      - "5001:5000"
+      - "5005:5000"
     environment:
       - SECRET_KEY=my_secret_key
       - DATABASE_URL=postgresql://postgres:admin@db:5432/test
