@@ -12,6 +12,7 @@ import DriverDashboard from "./components/Dashboard/DriverDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import { AuthProvider } from "./contexts/AuthContext";
 import { AlertProvider } from "./contexts/AlertContext";
+import ForgotPassword from "./components/Auth/ForgotPassword";
 
 const App = () => {
   const isAuthenticated = !!localStorage.getItem("token");
@@ -41,6 +42,7 @@ const App = () => {
               }
             ></Route>
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
             <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
             <Route path="/driver-dashboard" element={<DriverDashboard />} />

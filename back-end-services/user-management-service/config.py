@@ -8,7 +8,7 @@ class Config:
     MAIL_SERVER = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
     MAIL_PORT = os.getenv('MAIL_PORT', 587)
     MAIL_USERNAME = os.getenv('MAIL_USERNAME', 'raju0518@gmail.com')
-    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD', 'ramaraju0518')
+    MAIL_PASSWORD = os.getenv('MAIL_PASSWORD', 'lxcu lrgq yclo uklm')
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
     SWAGGER = {

@@ -1,10 +1,12 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token
 from app import db
 from models.user import User
 from utils.email import send_email
 from flasgger import swag_from
+import secrets
+import string
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -96,6 +98,11 @@ def change_password():
         return jsonify(message='Password updated successfully'), 200
     return jsonify(message='Invalid credentials'), 401
 
+def generate_random_password(length=12):
+    alphabet = string.ascii_letters + string.digits + string.punctuation
+    password = ''.join(secrets.choice(alphabet) for i in range(length))
+    return password
+
 @auth_bp.route('/forgot-password', methods=['POST'])
 @swag_from({
     'tags': ['Authentication'],
@@ -124,10 +131,15 @@ def forgot_password():
     data = request.get_json()
     user = User.query.filter_by(email=data.get('email')).first()
     if user:
-        new_password = 'new_password'  # Generate a new password or token
+        new_password = generate_random_password()
         user.password_hash = generate_password_hash(new_password)
         db.session.commit()
-        send_email(user.email, 'Password Reset', f'Your new password is {new_password}')
+        html_body = render_template(
+            'reset_password.html',
+            company_name='Cab Service',
+            new_password=new_password
+        )
+        send_email(user.email, 'Password Reset', f'Your new password is {new_password}', html_body)
         return jsonify(message='New password sent to your email'), 200
     return jsonify(message='User not found'), 404
 

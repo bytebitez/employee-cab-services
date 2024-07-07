@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { AuthContext } from '../../contexts/AuthContext';
 import { AlertContext } from '../../contexts/AlertContext';
@@ -72,10 +72,19 @@ const Login = () => {
                                         />
                                     </Form.Group>
 
-                                    <Button variant="primary" type="submit" className="btn-lg">
+                                    <Button variant="primary" type="submit" className="btn-lg btn-block">
                                         Login
                                     </Button>
                                 </Form>
+
+                                <div className="mt-3 text-center">
+                                    <Link to="/forgot-password" className="d-block mb-2">
+                                        Forgot Password?
+                                    </Link>
+                                    <Link to="/register" className="d-block">
+                                        Don't have an account? Register
+                                    </Link>
+                                </div>
                             </Card.Body>
                         </Card>
                     </Col>

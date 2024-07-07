@@ -12,7 +12,14 @@ export const login = async (data) => {
     }
 };
 export const changePassword = (data) => axios.post(`${API_BASE_URL}/change-password`, data);
-export const forgotPassword = (data) => axios.post(`${API_BASE_URL}/forgot-password`, data);
+export const forgotPassword = async (data) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/forgot-password`, data);
+        return response;
+    } catch (error) {
+        throw error;
+    }
+};
 
 // User endpoints
 export const registerEmployee = (data) => axios.post(`${API_BASE_URL}/register/employee`, data);

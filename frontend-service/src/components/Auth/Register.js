@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col, Card, Alert } from 'react-bootstrap';
 import { registerEmployee, registerDriver, registerAdmin } from '../../services/api';
 import './Register.css';
@@ -13,8 +13,7 @@ const Register = () => {
         password: '',
         role: 'employee', // Default role
     });
-
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [alert, setAlert] = useState(null);
 
@@ -35,14 +34,7 @@ const Register = () => {
         try {
             await registerFunc(formData);
             
-            // Redirect to login or dashboard based on the role
-            if (formData.role === 'employee' || formData.role === 'driver') {
-                history.push('/dashboard'); // Redirect to dashboard
-            } else if (formData.role === 'admin') {
-                history.push('/admin/dashboard'); // Redirect to admin dashboard
-            } else {
-                history.push('/login'); // Fallback redirect to login
-            }
+            navigate('/login');
     
         } catch (error) {
             setAlert({ type: 'danger', message: error.response.data.message });
@@ -137,6 +129,12 @@ const Register = () => {
                                         Register
                                     </Button>
                                 </Form>
+
+                                <div className="mt-3 text-center">
+                                    <Button variant="link" onClick={() => navigate('/login')}>
+                                        Back to Login
+                                    </Button>
+                                </div>
                             </Card.Body>
                         </Card>
                     </Col>
