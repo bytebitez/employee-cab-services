@@ -1,0 +1,31 @@
+.register-bg {
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+.card {
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.form-control {
+    border-radius: 10px;
+    height: calc(2.25rem + 2px);
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}

@@ -213,17 +213,18 @@ def register_admin():
     return register_user(request.get_json(), 'admin')
 
 def register_user(data, role):
-    if User.query.filter((User.phone_number == data.get('phone_number')) | (User.email == data.get('email'))).first():
-        return jsonify(message='User already exists'), 400
-    user = User(
-        first_name=data.get('first_name'),
-        last_name=data.get('last_name'),
-        phone_number=data.get('phone_number'),
-        email=data.get('email'),
-        password_hash=generate_password_hash(data.get('password')),
-        role=role,
-        status='inactive'
-    )
-    db.session.add(user)
-    db.session.commit()
-    return jsonify(message=f'{role.capitalize()} registered successfully'), 201
+    try:
+        new_user = User(
+            first_name=data['firstName'],
+            last_name=data['lastName'],
+            phone_number=data['phoneNumber'],
+            email=data['email'],
+            password_hash=generate_password_hash(data['password']),
+            role=role
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return jsonify({'message': 'User registered successfully'}), 201
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'message': str(e)}), 400
