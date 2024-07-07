@@ -7,7 +7,7 @@ import { login } from '../../services/api';
 import './Login.css';
 
 const Login = () => {
-    const [formData, setFormData] = useState({ phoneNumber: '', password: '' });
+    const [formData, setFormData] = useState({ phone_number: '', password: '' });
     const { setAuth } = useContext(AuthContext);
     const showAlert = useContext(AlertContext);
     const navigate = useNavigate();
@@ -20,8 +20,20 @@ const Login = () => {
         e.preventDefault();
         try {
             const response = await login(formData);
+            const user = response.data.user;
             setAuth({ user: response.data.user, token: response.data.token });
-            navigate('/employee-dashboard'); // or navigate to the appropriate dashboard based on role
+
+            // Navigate to the appropriate dashboard based on the user's role
+            if (user.role === 'employee') {
+                navigate('/employee-dashboard');
+            } else if (user.role === 'driver') {
+                navigate('/driver-dashboard');
+            } else if (user.role === 'admin') {
+                navigate('/admin-dashboard');
+            } else {
+                navigate('/'); // Default fallback
+            }
+
         } catch (error) {
             showAlert(error.response?.data?.message || 'Login failed', 'danger');
         }
@@ -40,8 +52,8 @@ const Login = () => {
                                         <Form.Label>Phone Number</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            name="phoneNumber"
-                                            value={formData.phoneNumber}
+                                            name="phone_number"
+                                            value={formData.phone_number}
                                             onChange={handleChange}
                                             required
                                             placeholder="Enter phone number"

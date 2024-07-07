@@ -46,8 +46,20 @@ def login():
     user = User.query.filter_by(phone_number=data.get('phone_number')).first()
     if user and check_password_hash(user.password_hash, data.get('password')):
         access_token = create_access_token(identity={'id': user.id, 'role': user.role})
-        return jsonify(access_token=access_token), 200
+        user_data = {
+            'id': user.id,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'phone_number': user.phone_number,
+            'email': user.email,
+            'role': user.role,
+            'status': user.status,
+            'created_at': user.created_at,
+            'updated_at': user.updated_at
+        }
+        return jsonify({'user': user_data, 'token': access_token}), 200
     return jsonify(message='Invalid credentials'), 401
+
 
 @auth_bp.route('/change-password', methods=['POST'])
 @swag_from({
@@ -150,6 +162,7 @@ def register_employee():
     """
     return register_user(request.get_json(), 'employee')
 
+
 @auth_bp.route('/register/driver', methods=['POST'])
 @swag_from({
     'tags': ['Registration'],
@@ -181,6 +194,7 @@ def register_driver():
     """
     return register_user(request.get_json(), 'driver')
 
+
 @auth_bp.route('/register/admin', methods=['POST'])
 @swag_from({
     'tags': ['Registration'],
@@ -211,6 +225,7 @@ def register_admin():
     Register Admin 
     """
     return register_user(request.get_json(), 'admin')
+
 
 def register_user(data, role):
     try:

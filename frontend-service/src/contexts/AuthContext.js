@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            setAuth({ ...auth, token });
+            setAuth((prevAuth) => ({ ...prevAuth, token }));
         }
     }, []);
 
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ auth, handleLogin }}>
+        <AuthContext.Provider value={{ auth, setAuth, handleLogin }}>
             {children}
         </AuthContext.Provider>
     );
