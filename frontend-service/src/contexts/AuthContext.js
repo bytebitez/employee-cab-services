@@ -21,8 +21,14 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const handleLogout = () => {
+        setAuth({ user: null, token: null });
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+    };
+
     return (
-        <AuthContext.Provider value={{ auth, setAuth, handleLogin }}>
+        <AuthContext.Provider value={{ auth, setAuth, handleLogin, handleLogout }}>
             {children}
         </AuthContext.Provider>
     );

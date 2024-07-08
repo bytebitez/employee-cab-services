@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
+import EmployeeDashboard from "./components/EmployeeDashboard/EmployeeDashboard";
 import DriverDashboard from "./components/Dashboard/DriverDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -44,7 +44,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
+            <Route path="/employee-dashboard/*" element={<EmployeeDashboard />} />
             <Route path="/driver-dashboard" element={<DriverDashboard />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
           </Routes>
