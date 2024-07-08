@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Container, Row, Col, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Booking from './Booking';
@@ -14,13 +14,18 @@ const EmployeeDashboard = () => {
     return (
         <Container fluid>
             <Row>
-                <Col md={12} className="header">
+                <Col md={12} className="header m-0">
                     <Navbar bg="light" expand="lg">
                         <Navbar.Brand href="#home">Employee Dashboard</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                             <Nav>
-                                <NavDropdown title={`Hello, ${auth.user['first_name'] + " " + auth.user['last_name']}`} id="basic-nav-dropdown">
+                                <NavDropdown 
+                                    title={<Image src="no-profile.jpg" roundedCircle width="30" height="30" />}
+                                    id="basic-nav-dropdown"
+                                >
+                                    <NavDropdown.Item disabled>Hello, {auth.user['first_name']}</NavDropdown.Item>
+                                    <NavDropdown.Divider />
                                     <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                                 </NavDropdown>
                             </Nav>
