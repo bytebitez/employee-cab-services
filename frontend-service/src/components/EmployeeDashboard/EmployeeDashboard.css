@@ -11,7 +11,7 @@
 }
 
 .sidebar {
-    background: url('left-nav.jpg') no-repeat center center;
+    /* background: url('left-nav.jpg') no-repeat center center; */
     background-size: cover;
     height: 100vh;
     padding-top: 20px;

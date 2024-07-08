@@ -1,0 +1,12 @@
+.help-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Center content vertically */
+    text-align: center;
+}
+
+.help-card {
+    max-width: 400px; /* Limit width of the card */
+    margin-top: 20px; /* Add margin for spacing */
+}
