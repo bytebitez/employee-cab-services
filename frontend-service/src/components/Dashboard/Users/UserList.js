@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Table, Container } from 'react-bootstrap';
-import { AuthContext } from '../../contexts/AuthContext';
-import { getEmployees } from '../../services/api';
+import { AuthContext } from '../../../contexts/AuthContext';
+import { getEmployees } from '../../../services/api';
 
 const UserList = () => {
     const [users, setUsers] = useState([]);

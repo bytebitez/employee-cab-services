@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Table, Container } from 'react-bootstrap';
-import { AuthContext } from '../../contexts/AuthContext';
-import { getBookingsForEmployee } from '../../services/api';
+import { AuthContext } from '../../../contexts/AuthContext';
+import { getBookingsForEmployee } from '../../../services/api';
 
 const BookingList = () => {
     const [bookings, setBookings] = useState([]);

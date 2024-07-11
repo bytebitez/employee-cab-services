@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Table, Container } from 'react-bootstrap';
-import { AuthContext } from '../../contexts/AuthContext';
-import { getRoutes } from '../../services/api';
+import { AuthContext } from '../../../contexts/AuthContext';
+import { getRoutes } from '../../../services/api';
 
 const RouteList = () => {
     const [routes, setRoutes] = useState([]);

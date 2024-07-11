@@ -9,12 +9,12 @@ import {
   Image,
 } from "react-bootstrap";
 import { NavLink, Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import Availability from "./Availability";
-import TripHistory from "./TripHistory";
-import Help from "./Help";
+import Dashboard from "./components/Dashboard";
+import Availability from "./components/Availability";
+import TripHistory from "./components/TripHistory";
+import Help from "./components/Help";
 import { AuthContext } from "../../contexts/AuthContext";
-import "./DriverDashboard.css";
+import "./Styles/DriverDashboard.css";
 
 const DriverDashboard = () => {
   const { auth, handleLogout } = useContext(AuthContext);

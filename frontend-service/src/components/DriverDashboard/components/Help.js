@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import "./Help.css"; // Assuming Help.css contains your custom styles
+import "./../Styles/Help.css";
 
 const Help = () => {
   return (

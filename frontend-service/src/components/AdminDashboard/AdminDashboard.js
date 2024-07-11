@@ -9,11 +9,11 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 import { NavLink, Route, Routes } from "react-router-dom";
-import AdminDashboardMain from "./AdminDashboardMain";
-import EmployeeList from "./EmployeeList";
-import DriverList from "./DriverList";
-import RouteList from "./RouteList";
-import "./AdminDashboard.css";
+import AdminDashboardMain from "./components/Dashboard";
+import EmployeeList from "./components/EmployeeList";
+import DriverList from "./components/DriverList";
+import RouteList from "./components/RouteList";
+import "./Styles/AdminDashboard.css";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
