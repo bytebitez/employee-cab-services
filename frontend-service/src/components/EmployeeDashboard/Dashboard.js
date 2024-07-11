@@ -14,7 +14,7 @@ const Dashboard = () => {
         <div className="container mt-4">
             <h2 className="mb-4">Current Week Bookings</h2>
             <Row>
-                <Col md={6}>
+                <Col md={4}>
                     <Card>
                         <ListGroup variant="flush">
                             {currentWeekBookings.map((booking, index) => (
@@ -31,13 +31,15 @@ const Dashboard = () => {
                         </ListGroup>
                     </Card>
                 </Col>
-                <Col md={6}>
+                <Col md={4}>
                     <Card>
                         <Card.Body>
                             <h5 className="mb-3">Work Week Calendar</h5>
                             <Calendar />
                         </Card.Body>
                     </Card>
+                </Col>
+                <Col md={4}>
                 </Col>
             </Row>
         </div>

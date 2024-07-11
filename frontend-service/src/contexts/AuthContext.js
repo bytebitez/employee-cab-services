@@ -1,10 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { login } from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({ user: null, token: null });
+    const navigate = useNavigate(); // useNavigate hook to navigate to different routes
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -18,6 +20,7 @@ export const AuthProvider = ({ children }) => {
         if (response.data.token) {
             setAuth({ user: response.data.user, token: response.data.token });
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data.user));
         }
     };
 
@@ -25,6 +28,7 @@ export const AuthProvider = ({ children }) => {
         setAuth({ user: null, token: null });
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        navigate('/login'); // Navigate to the login page after logout
     };
 
     return (
