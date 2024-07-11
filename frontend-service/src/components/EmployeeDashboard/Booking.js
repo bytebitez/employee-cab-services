@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Col } from "react-bootstrap";
-import Calendar from "react-calendar"; // You need to install react-calendar
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 const Booking = () => {

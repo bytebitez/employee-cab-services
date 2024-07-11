@@ -23,7 +23,6 @@ const Login = () => {
             const user = response.data.user;
             setAuth({ user: response.data.user, token: response.data.token });
 
-            // Navigate to the appropriate dashboard based on the user's role
             if (user.role === 'employee') {
                 navigate('/employee-dashboard');
             } else if (user.role === 'driver') {
@@ -31,7 +30,7 @@ const Login = () => {
             } else if (user.role === 'admin') {
                 navigate('/admin-dashboard');
             } else {
-                navigate('/'); // Default fallback
+                navigate('/');
             }
 
         } catch (error) {

@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({ user: null, token: null });
-    const navigate = useNavigate(); // useNavigate hook to navigate to different routes
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         setAuth({ user: null, token: null });
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        navigate('/login'); // Navigate to the login page after logout
+        navigate('/login');
     };
 
     return (

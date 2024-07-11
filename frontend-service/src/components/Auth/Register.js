@@ -11,7 +11,7 @@ const Register = () => {
         phoneNumber: '',
         email: '',
         password: '',
-        role: 'employee', // Default role
+        role: 'employee',
     });
     const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ const Register = () => {
     
         } catch (error) {
             setAlert({ type: 'danger', message: error.response.data.message });
-            setTimeout(() => setAlert(null), 5000); // Hide alert after 5 seconds
+            setTimeout(() => setAlert(null), 5000);
         }
     };
 

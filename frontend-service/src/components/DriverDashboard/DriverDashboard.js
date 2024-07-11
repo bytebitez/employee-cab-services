@@ -13,7 +13,7 @@ import Dashboard from "./Dashboard";
 import Availability from "./Availability";
 import TripHistory from "./TripHistory";
 import Help from "./Help";
-import { AuthContext } from "../../contexts/AuthContext"; // Assuming AuthContext provides user details and logout function
+import { AuthContext } from "../../contexts/AuthContext";
 import "./DriverDashboard.css";
 
 const DriverDashboard = () => {
@@ -45,7 +45,7 @@ const DriverDashboard = () => {
                     />
                   }
                   id="basic-nav-dropdown"
-                  align="end" // Align the dropdown to the right
+                  align="end"
                 >
                   <NavDropdown.Item disabled>
                     Hello, {auth.user["first_name"]}

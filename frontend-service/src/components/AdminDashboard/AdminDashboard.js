@@ -46,7 +46,7 @@ const AdminDashboard = () => {
                     />
                   }
                   id="basic-nav-dropdown"
-                  align="end" // Align the dropdown to the right
+                  align="end"
                 >
                   <NavDropdown.Item disabled>
                     Hello, {auth.user["first_name"]}

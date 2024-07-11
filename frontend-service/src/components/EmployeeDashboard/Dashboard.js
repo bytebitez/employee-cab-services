@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, ListGroup, Row, Col } from 'react-bootstrap';
-import Calendar from 'react-calendar'; // You need to install react-calendar
+import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 const Dashboard = () => {

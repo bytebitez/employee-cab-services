@@ -20,7 +20,6 @@ const BookingForm = () => {
         e.preventDefault();
         try {
             await createBooking(formData, auth.token);
-            // Handle successful booking creation
         } catch (error) {
             // Handle error
         }

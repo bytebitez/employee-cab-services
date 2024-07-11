@@ -13,7 +13,7 @@ import Dashboard from "./Dashboard";
 import Booking from "./Booking";
 import TripHistory from "./TripHistory";
 import Help from "./Help";
-import { AuthContext } from "../../contexts/AuthContext"; // Assuming AuthContext provides user details and logout function
+import { AuthContext } from "../../contexts/AuthContext";
 import "./EmployeeDashboard.css";
 
 const EmployeeDashboard = () => {
