@@ -9,11 +9,14 @@ services:
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
-      - DATABASE_URL=postgresql://postgres:admin@db:5432/test
+      - DATABASE_URL=postgresql://postgres:admin@host.docker.internal:5432/test
       - SECRET_KEY=my_secret_key
       - JWT_SECRET_KEY=abcdefgh1234567890
     depends_on:
       - db
+    volumes:
+      - ./booking-service:/app
+    entrypoint: ["./entrypoint.sh"]
 
   user-management-service:
     build:
@@ -23,12 +26,15 @@ services:
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
-      - DATABASE_URL=postgresql://postgres:admin@db:5432/test
+      - DATABASE_URL=postgresql://postgres:admin@host.docker.internal:5432/test
       - SECRET_KEY=my_secret_key
       - JWT_SECRET_KEY=abcdefgh1234567890
     depends_on:
       - db
-      
+    volumes:
+      - ./user-management-service:/app
+    entrypoint: ["./entrypoint.sh"]
+
   driver-availability-service:
     build:
       context: ./driver_availability_service
@@ -37,11 +43,14 @@ services:
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
-      - DATABASE_URL=postgresql://postgres:admin@db:5432/test
+      - DATABASE_URL=postgresql://postgres:admin@host.docker.internal:5432/test
       - SECRET_KEY=my_secret_key
       - JWT_SECRET_KEY=abcdefgh1234567890
     depends_on:
       - db
+    volumes:
+      - ./driver_availability_service:/app
+    entrypoint: ["./entrypoint.sh"]
 
   route-management-service:
     build:
@@ -51,11 +60,14 @@ services:
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
-      - DATABASE_URL=postgresql://postgres:admin@db:5432/test
+      - DATABASE_URL=postgresql://postgres:admin@host.docker.internal:5432/test
       - SECRET_KEY=my_secret_key
       - JWT_SECRET_KEY=abcdefgh1234567890
     depends_on:
       - db
+    volumes:
+      - ./route_management_service:/app
+    entrypoint: ["./entrypoint.sh"]
 
   admin_management_service:
     build: ./admin_management_service
@@ -63,7 +75,7 @@ services:
       - "5005:5000"
     environment:
       - SECRET_KEY=my_secret_key
-      - DATABASE_URL=postgresql://postgres:admin@db:5432/test
+      - DATABASE_URL=postgresql://postgres:admin@host.docker.internal:5432/test
       - JWT_SECRET_KEY=abcdefgh1234567890
       - MAIL_SERVER=smtp.gmail.com
       - MAIL_PORT=587
@@ -73,16 +85,18 @@ services:
       - MAIL_USE_SSL=False
     depends_on:
       - db
+    volumes:
+      - ./admin_management_service:/app
+    entrypoint: ["./entrypoint.sh"]
   
   celery_worker:
     build: ./cron_jobs_service
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
-      - DATABASE_URL=postgresql://postgres:admin@db:5432/test
+      - DATABASE_URL=postgresql://postgres:admin@host.docker.internal:5432/test
     depends_on:
       - redis
-      - db
 
   redis:
     image: redis:6.0
